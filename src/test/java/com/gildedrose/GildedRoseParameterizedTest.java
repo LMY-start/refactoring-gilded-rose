@@ -47,7 +47,11 @@ public class GildedRoseParameterizedTest {
                 {new RoseItem[]{new RoseItem("Elixir of the Mongoose", 1, 0)}, "Elixir of the Mongoose", 0, 0},
                 {new RoseItem[]{new RoseItem("Elixir of the Mongoose", 0, 0)}, "Elixir of the Mongoose", -1, 0},
                 {new RoseItem[]{new RoseItem("Elixir of the Mongoose", 0, 2)}, "Elixir of the Mongoose", -1, 0},
-                {new RoseItem[]{new RoseItem("Elixir of the Mongoose", 0, 5)}, "Elixir of the Mongoose", -1, 3},
+
+                {new RoseItem[]{new RoseItem("Sulfuras, Hand of Ragnaros", 0, 80)}, "Sulfuras, Hand of Ragnaros", 0, 80},
+                {new RoseItem[]{new RoseItem("Sulfuras, Hand of Ragnaros", -1, 80)}, "Sulfuras, Hand of Ragnaros", -1, 80},
+                {new RoseItem[]{new RoseItem("Sulfuras, Hand of Ragnaros", 2, 30)}, "Sulfuras, Hand of Ragnaros", 2, 30},
+                {new RoseItem[]{new RoseItem("Sulfuras, Hand of Ragnaros", 10, 3)}, "Sulfuras, Hand of Ragnaros", 10, 3},
 
                 {new RoseItem[]{new RoseItem("foo", 1, 2)}, "foo", 0, 1},
                 {new RoseItem[]{new RoseItem("foo", 0, 2)}, "foo", -1, 0},
@@ -62,7 +66,7 @@ public class GildedRoseParameterizedTest {
         gildedRose.updateQuality();
 
         String name = gildedRose.roseItems[0].name;
-        String messageFormat = "Test for " + name + " of %s, the actual value is %s, but excepted value is %s";
+        String messageFormat = "Test for \"" + name + "\" of %s, the actual value is %s, but excepted value is %s";
         assertThat(String.format(messageFormat, "name", name, exceptedRoseName),
                    name, is(exceptedRoseName));
         int sellIn = gildedRose.roseItems[0].sellIn;
