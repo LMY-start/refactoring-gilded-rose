@@ -91,18 +91,18 @@ public class GildedRoseParameterizedTest {
 
         gildedRose.updateQuality();
 
-        String name = gildedRose.roseItems[0].name;
+        String name = gildedRose.roseItems[0].getName();
         String messageFormat = "Test for (" + this.roseName + ", " + this.sellIn + ", " + this.quality + ")" +
                 " of %s, the actual value is %s, but excepted value is %s";
 
         assertThat(String.format(messageFormat, "name", name, exceptedRoseName),
                    name, is(exceptedRoseName));
 
-        int sellIn = gildedRose.roseItems[0].sellIn;
+        int sellIn = gildedRose.roseItems[0].getSellIn();
         assertThat(String.format(messageFormat, "sellIn", sellIn, exceptedSellIn),
                    sellIn, is(exceptedSellIn));
 
-        int quality = gildedRose.roseItems[0].quality;
+        int quality = gildedRose.roseItems[0].getQuality();
         assertThat(String.format(messageFormat, "quality", quality, exceptedQuality),
                    quality, is(exceptedQuality));
     }
