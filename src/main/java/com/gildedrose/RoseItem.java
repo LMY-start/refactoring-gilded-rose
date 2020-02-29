@@ -37,7 +37,14 @@ public class RoseItem {
         return this.name + ", " + this.sellIn + ", " + this.quality;
     }
 
-    public void processQuality() {
+    public void updateSellInAndQuality(){
+        processQuality();
+        processSellIn();
+        processSellInLessZero();
+    }
+
+
+    private void processQuality() {
         if (!name.equals("Aged Brie")
                 && !name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             if (quality > 0) {
@@ -66,13 +73,13 @@ public class RoseItem {
         }
     }
 
-    public void processSellIn() {
+    private void processSellIn() {
         if (!name.equals("Sulfuras, Hand of Ragnaros")) {
             decreaseSellIn();
         }
     }
 
-    public void processSellInLessZero() {
+    private void processSellInLessZero() {
         if (sellIn < 0) {
             if (!name.equals("Aged Brie")) {
                 if (!name.equals("Backstage passes to a TAFKAL80ETC concert")) {
