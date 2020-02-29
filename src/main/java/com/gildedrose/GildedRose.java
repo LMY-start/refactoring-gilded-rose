@@ -9,52 +9,62 @@ class GildedRose {
 
     public void updateQuality() {
         for (int i = 0; i < roseItems.length; i++) {
-            if (!roseItems[i].getName().equals("Aged Brie")
-                    && !roseItems[i].getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (roseItems[i].getQuality() > 0) {
-                    if (!roseItems[i].getName().equals("Sulfuras, Hand of Ragnaros")) {
-                        roseItems[i].decreaseQuality();
-                    }
+            processQuality(roseItems[i]);
+            processSellIn(roseItems[i]);
+            processSellInLessZero(roseItems[i]);
+        }
+    }
+
+    private void processQuality(RoseItem roseItem) {
+        if (!roseItem.getName().equals("Aged Brie")
+                && !roseItem.getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
+            if (roseItem.getQuality() > 0) {
+                if (!roseItem.getName().equals("Sulfuras, Hand of Ragnaros")) {
+                    roseItem.decreaseQuality();
                 }
-            } else {
-                if (roseItems[i].getQuality() < 50) {
-                    roseItems[i].increaseQuality();
+            }
+        } else {
+            if (roseItem.getQuality() < 50) {
+                roseItem.increaseQuality();
 
-                    if (roseItems[i].getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (roseItems[i].getSellIn() < 11) {
-                            if (roseItems[i].getQuality() < 50) {
-                                roseItems[i].increaseQuality();
-                            }
+                if (roseItem.getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
+                    if (roseItem.getSellIn() < 11) {
+                        if (roseItem.getQuality() < 50) {
+                            roseItem.increaseQuality();
                         }
+                    }
 
-                        if (roseItems[i].getSellIn() < 6) {
-                            if (roseItems[i].getQuality() < 50) {
-                                roseItems[i].increaseQuality();
-                            }
+                    if (roseItem.getSellIn() < 6) {
+                        if (roseItem.getQuality() < 50) {
+                            roseItem.increaseQuality();
                         }
                     }
                 }
             }
+        }
+    }
 
-            if (!roseItems[i].getName().equals("Sulfuras, Hand of Ragnaros")) {
-                roseItems[i].decreaseSellIn();
-            }
+    private void processSellIn(RoseItem roseItem) {
+        if (!roseItem.getName().equals("Sulfuras, Hand of Ragnaros")) {
+            roseItem.decreaseSellIn();
+        }
+    }
 
-            if (roseItems[i].getSellIn() < 0) {
-                if (!roseItems[i].getName().equals("Aged Brie")) {
-                    if (!roseItems[i].getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (roseItems[i].getQuality() > 0) {
-                            if (!roseItems[i].getName().equals("Sulfuras, Hand of Ragnaros")) {
-                                roseItems[i].decreaseQuality();
-                            }
+    private void processSellInLessZero(RoseItem roseItem) {
+        if (roseItem.getSellIn() < 0) {
+            if (!roseItem.getName().equals("Aged Brie")) {
+                if (!roseItem.getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
+                    if (roseItem.getQuality() > 0) {
+                        if (!roseItem.getName().equals("Sulfuras, Hand of Ragnaros")) {
+                            roseItem.decreaseQuality();
                         }
-                    } else {
-                        roseItems[i].resetQuality2Zero();
                     }
                 } else {
-                    if (roseItems[i].getQuality() < 50) {
-                        roseItems[i].increaseQuality();
-                    }
+                    roseItem.resetQuality2Zero();
+                }
+            } else {
+                if (roseItem.getQuality() < 50) {
+                    roseItem.increaseQuality();
                 }
             }
         }
