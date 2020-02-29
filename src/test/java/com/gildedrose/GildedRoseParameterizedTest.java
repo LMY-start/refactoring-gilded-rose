@@ -41,11 +41,13 @@ public class GildedRoseParameterizedTest {
                 {"+5 Dexterity Vest", -1, -1, "+5 Dexterity Vest", -2, -1},
 
                 {"Aged Brie", 2, 0, "Aged Brie", 1, 1},
-                {"Aged Brie", 2, 0, "Aged Brie", 1, 1},
                 {"Aged Brie", 1, 1, "Aged Brie", 0, 2},
                 {"Aged Brie", 0, 0, "Aged Brie", -1, 2},
                 {"Aged Brie", 0, 2, "Aged Brie", -1, 4},
                 {"Aged Brie", 3, 50, "Aged Brie", 2, 50},
+                {"Aged Brie", 3, 49, "Aged Brie", 2, 50},
+                {"Aged Brie", 3, 48, "Aged Brie", 2, 49},
+                {"Aged Brie", -1, 0, "Aged Brie", -2, 2},
                 {"Aged Brie", -1, -1, "Aged Brie", -2, 1},
 
                 {"Elixir of the Mongoose", 5, 9, "Elixir of the Mongoose", 4, 8},
@@ -62,7 +64,12 @@ public class GildedRoseParameterizedTest {
                 {"Sulfuras, Hand of Ragnaros", -1, -1, "Sulfuras, Hand of Ragnaros", -1, -1},
 
                 {"Backstage passes to a TAFKAL80ETC concert", 15, 20, "Backstage passes to a TAFKAL80ETC concert", 14, 21},
+                {"Backstage passes to a TAFKAL80ETC concert", 15, 49, "Backstage passes to a TAFKAL80ETC concert", 14, 50},
                 {"Backstage passes to a TAFKAL80ETC concert", 15, 50, "Backstage passes to a TAFKAL80ETC concert", 14, 50},
+                {"Backstage passes to a TAFKAL80ETC concert", 6, 20, "Backstage passes to a TAFKAL80ETC concert", 5, 22},
+                {"Backstage passes to a TAFKAL80ETC concert", 6, 49, "Backstage passes to a TAFKAL80ETC concert", 5, 50},
+                {"Backstage passes to a TAFKAL80ETC concert", 6, 50, "Backstage passes to a TAFKAL80ETC concert", 5, 50},
+                {"Backstage passes to a TAFKAL80ETC concert", 5, 20, "Backstage passes to a TAFKAL80ETC concert", 4, 23},
                 {"Backstage passes to a TAFKAL80ETC concert", 5, 49, "Backstage passes to a TAFKAL80ETC concert", 4, 50},
                 {"Backstage passes to a TAFKAL80ETC concert", 5, 50, "Backstage passes to a TAFKAL80ETC concert", 4, 50},
                 {"Backstage passes to a TAFKAL80ETC concert", 1, 20, "Backstage passes to a TAFKAL80ETC concert", 0, 23},
@@ -74,7 +81,7 @@ public class GildedRoseParameterizedTest {
                 {"foo", 1, 2, "foo", 0, 1},
                 {"foo", 0, 2, "foo", -1, 0},
                 {"foo", 0, 5, "foo", -1, 3},
-                {"foo", -1, -1, "foo", -2, -1},
+                {"foo", -1, -1, "foo", -2, -1}
         });
     }
 
