@@ -1,61 +1,47 @@
 package com.gildedrose;
 
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
+import java.util.Arrays;
+import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
 
+@RunWith(Parameterized.class)
 public class GildedRoseForSexterityVestTest {
 
+    private RoseItem[] roseItems;
+    private int exceptedSellIn;
+    private int exceptedQuality;
+    private static String roseName = "+5 Dexterity Vest";
 
-    private String roseName;
+    public GildedRoseForSexterityVestTest(RoseItem[] roseItems, int exceptedSellIn, int exceptedQuality) {
+        this.roseItems = roseItems;
+        this.exceptedSellIn = exceptedSellIn;
+        this.exceptedQuality = exceptedQuality;
+    }
 
-    @Before
-    public void setUp() {
-        roseName = "+5 Dexterity Vest";
+    @Parameterized.Parameters
+    public static Collection<Object> data() {
+        return Arrays.asList(new Object[][]{
+                {new RoseItem[]{new RoseItem(roseName, 10, 20)}, 9, 19},
+                {new RoseItem[]{new RoseItem(roseName, 1, 1)}, 0, 0},
+                {new RoseItem[]{new RoseItem(roseName, 1, 0)}, 0, 0},
+                {new RoseItem[]{new RoseItem(roseName, 0, 0)}, -1, 0},
+        });
     }
 
     @Test
-    public void should_sell_in_decrease_1_and_quality_decrease_1_when_update_quality_given_sell_in_is_10_and_quality_is_20() {
-        GildedRose gildedRose = new GildedRose(new RoseItem[]{new RoseItem(roseName, 10, 20)});
+    public void should_return_right_sell_and_quality_when_update_quality_given_the_rose_item() {
+        GildedRose gildedRose = new GildedRose(roseItems);
 
         gildedRose.updateQuality();
 
         assertEquals(roseName, gildedRose.roseItems[0].name);
-        assertEquals(9, gildedRose.roseItems[0].sellIn);
-        assertEquals(19, gildedRose.roseItems[0].quality);
+        assertEquals(exceptedSellIn, gildedRose.roseItems[0].sellIn);
+        assertEquals(exceptedQuality, gildedRose.roseItems[0].quality);
     }
 
-    @Test
-    public void should_sell_in_decrease_1_and_quality_decrease_1_when_update_quality_given_sell_in_is_1_and_quality_is_1() {
-        GildedRose gildedRose = new GildedRose(new RoseItem[]{new RoseItem(roseName, 1, 1)});
-
-        gildedRose.updateQuality();
-
-        assertEquals(roseName, gildedRose.roseItems[0].name);
-        assertEquals(0, gildedRose.roseItems[0].sellIn);
-        assertEquals(0, gildedRose.roseItems[0].quality);
-    }
-
-    @Test
-    public void should_sell_in_decrease_1_and_quality_not_change_when_update_quality_given_sell_in_is_1_and_quality_is_0() {
-        GildedRose gildedRose = new GildedRose(new RoseItem[]{new RoseItem(roseName, 1, 0)});
-
-        gildedRose.updateQuality();
-
-        assertEquals(roseName, gildedRose.roseItems[0].name);
-        assertEquals(0, gildedRose.roseItems[0].sellIn);
-        assertEquals(0, gildedRose.roseItems[0].quality);
-    }
-
-    @Test
-    public void should_sell_in_decrease_1_and_quality_not_change_when_update_quality_given_sell_in_is_0_and_quality_is_0() {
-        GildedRose gildedRose = new GildedRose(new RoseItem[]{new RoseItem(roseName, 0, 0)});
-
-        gildedRose.updateQuality();
-
-        assertEquals(roseName, gildedRose.roseItems[0].name);
-        assertEquals(-1, gildedRose.roseItems[0].sellIn);
-        assertEquals(0, gildedRose.roseItems[0].quality);
-    }
 }
