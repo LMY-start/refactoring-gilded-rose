@@ -32,11 +32,18 @@ public class GildedRoseParameterizedTest {
                 {new RoseItem[]{new RoseItem("+5 Dexterity Vest", 1, 1)}, "+5 Dexterity Vest", 0, 0},
                 {new RoseItem[]{new RoseItem("+5 Dexterity Vest", 1, 0)}, "+5 Dexterity Vest", 0, 0},
                 {new RoseItem[]{new RoseItem("+5 Dexterity Vest", 0, 0)}, "+5 Dexterity Vest", -1, 0},
+                {new RoseItem[]{new RoseItem("+5 Dexterity Vest", 0, 2)}, "+5 Dexterity Vest", -1, 0},
+                {new RoseItem[]{new RoseItem("+5 Dexterity Vest", 0, 5)}, "+5 Dexterity Vest", -1, 3},
 
                 {new RoseItem[]{new RoseItem("Aged Brie", 2, 0)}, "Aged Brie", 1, 1},
                 {new RoseItem[]{new RoseItem("Aged Brie", 2, 0)}, "Aged Brie", 1, 1},
                 {new RoseItem[]{new RoseItem("Aged Brie", 1, 1)}, "Aged Brie", 0, 2},
-                {new RoseItem[]{new RoseItem("Aged Brie", 0, 2)}, "Aged Brie", -1, 4}
+                {new RoseItem[]{new RoseItem("Aged Brie", 0, 0)}, "Aged Brie", -1, 2},
+                {new RoseItem[]{new RoseItem("Aged Brie", 0, 2)}, "Aged Brie", -1, 4},
+
+                {new RoseItem[]{new RoseItem("foo", 1, 2)}, "foo", 0, 1},
+                {new RoseItem[]{new RoseItem("foo", 0, 2)}, "foo", -1, 0},
+                {new RoseItem[]{new RoseItem("foo", 0, 5)}, "foo", -1, 3},
         });
     }
 
