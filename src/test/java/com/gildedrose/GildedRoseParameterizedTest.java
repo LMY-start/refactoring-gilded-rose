@@ -4,8 +4,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -31,65 +33,98 @@ public class GildedRoseParameterizedTest {
 
     @Parameterized.Parameters
     public static Collection<Object> data() {
-        String backstagePassesToATafkal80etcConcert = "Backstage passes to a TAFKAL80ETC concert";
-        String dexterityVest = "+5 Dexterity Vest";
-        String agedBrie = "Aged Brie";
-        String elixirOfTheMongoose = "Elixir of the Mongoose";
-        String sulfurasHandOfRagnaros = "Sulfuras, Hand of Ragnaros";
+        List<Object> testData = new ArrayList<>();
+        testData.addAll(prepareDexterityVestData());
+        testData.addAll(prepareAgedBrieData());
+        testData.addAll(prepareSulfurasHandOfRagnarosData());
+        testData.addAll(prepareElixirOfTheMongooseData());
+        testData.addAll(prepareBackstagePassesToATafkal80etcConcertData());
+        testData.addAll(prepareOtherData());
+        return testData;
+    }
 
+    private static Collection<Object> prepareDexterityVestData() {
+        String dexterityVestRoseName = "+5 Dexterity Vest";
         return Arrays.asList(new Object[][]{
-                {dexterityVest, 10, 20, dexterityVest, 9, 19},
-                {dexterityVest, 1, 1, dexterityVest, 0, 0},
-                {dexterityVest, 1, 0, dexterityVest, 0, 0},
-                {dexterityVest, 0, 0, dexterityVest, -1, 0},
-                {dexterityVest, 0, 2, dexterityVest, -1, 0},
-                {dexterityVest, 0, 5, dexterityVest, -1, 3},
-                {dexterityVest, -1, -1, dexterityVest, -2, -1},
-
-                {agedBrie, 2, 0, agedBrie, 1, 1},
-                {agedBrie, 1, 1, agedBrie, 0, 2},
-                {agedBrie, 0, 0, agedBrie, -1, 2},
-                {agedBrie, 0, 2, agedBrie, -1, 4},
-                {agedBrie, 3, 50, agedBrie, 2, 50},
-                {agedBrie, 3, 49, agedBrie, 2, 50},
-                {agedBrie, 3, 48, agedBrie, 2, 49},
-                {agedBrie, -1, 0, agedBrie, -2, 2},
-                {agedBrie, -1, -1, agedBrie, -2, 1},
-
-                {elixirOfTheMongoose, 5, 9, elixirOfTheMongoose, 4, 8},
-                {elixirOfTheMongoose, 1, 1, elixirOfTheMongoose, 0, 0},
-                {elixirOfTheMongoose, 1, 0, elixirOfTheMongoose, 0, 0},
-                {elixirOfTheMongoose, 0, 0, elixirOfTheMongoose, -1, 0},
-                {elixirOfTheMongoose, 0, 2, elixirOfTheMongoose, -1, 0},
-                {elixirOfTheMongoose, -1, -1, elixirOfTheMongoose, -2, -1},
-
-                {sulfurasHandOfRagnaros, 0, 80, sulfurasHandOfRagnaros, 0, 80},
-                {sulfurasHandOfRagnaros, -1, 80, sulfurasHandOfRagnaros, -1, 80},
-                {sulfurasHandOfRagnaros, 2, 30, sulfurasHandOfRagnaros, 2, 30},
-                {sulfurasHandOfRagnaros, 10, 3, sulfurasHandOfRagnaros, 10, 3},
-                {sulfurasHandOfRagnaros, -1, -1, sulfurasHandOfRagnaros, -1, -1},
-
-                {backstagePassesToATafkal80etcConcert, 15, 20, backstagePassesToATafkal80etcConcert, 14, 21},
-                {backstagePassesToATafkal80etcConcert, 15, 49, backstagePassesToATafkal80etcConcert, 14, 50},
-                {backstagePassesToATafkal80etcConcert, 15, 50, backstagePassesToATafkal80etcConcert, 14, 50},
-                {backstagePassesToATafkal80etcConcert, 6, 20, backstagePassesToATafkal80etcConcert, 5, 22},
-                {backstagePassesToATafkal80etcConcert, 6, 49, backstagePassesToATafkal80etcConcert, 5, 50},
-                {backstagePassesToATafkal80etcConcert, 6, 50, backstagePassesToATafkal80etcConcert, 5, 50},
-                {backstagePassesToATafkal80etcConcert, 5, 20, backstagePassesToATafkal80etcConcert, 4, 23},
-                {backstagePassesToATafkal80etcConcert, 5, 49, backstagePassesToATafkal80etcConcert, 4, 50},
-                {backstagePassesToATafkal80etcConcert, 5, 50, backstagePassesToATafkal80etcConcert, 4, 50},
-                {backstagePassesToATafkal80etcConcert, 1, 20, backstagePassesToATafkal80etcConcert, 0, 23},
-                {backstagePassesToATafkal80etcConcert, 0, 20, backstagePassesToATafkal80etcConcert, -1, 0},
-                {backstagePassesToATafkal80etcConcert, 0, 50, backstagePassesToATafkal80etcConcert, -1, 0},
-                {backstagePassesToATafkal80etcConcert, -1, 0, backstagePassesToATafkal80etcConcert, -2, 0},
-                {backstagePassesToATafkal80etcConcert, -1, -1, backstagePassesToATafkal80etcConcert, -2, 0},
-
-                {"foo", 1, 2, "foo", 0, 1},
-                {"foo", 0, 2, "foo", -1, 0},
-                {"foo", 0, 5, "foo", -1, 3},
-                {"foo", -1, -1, "foo", -2, -1}
+                {dexterityVestRoseName, 10, 20, dexterityVestRoseName, 9, 19},
+                {dexterityVestRoseName, 1, 1, dexterityVestRoseName, 0, 0},
+                {dexterityVestRoseName, 1, 0, dexterityVestRoseName, 0, 0},
+                {dexterityVestRoseName, 0, 0, dexterityVestRoseName, -1, 0},
+                {dexterityVestRoseName, 0, 2, dexterityVestRoseName, -1, 0},
+                {dexterityVestRoseName, 0, 5, dexterityVestRoseName, -1, 3},
+                {dexterityVestRoseName, -1, -1, dexterityVestRoseName, -2, -1}
         });
     }
+
+    private static Collection<Object> prepareAgedBrieData() {
+        String agedBrieRoseName = "Aged Brie";
+        return Arrays.asList(new Object[][]{
+                {agedBrieRoseName, 2, 0, agedBrieRoseName, 1, 1},
+                {agedBrieRoseName, 1, 1, agedBrieRoseName, 0, 2},
+                {agedBrieRoseName, 0, 0, agedBrieRoseName, -1, 2},
+                {agedBrieRoseName, 0, 2, agedBrieRoseName, -1, 4},
+                {agedBrieRoseName, 3, 50, agedBrieRoseName, 2, 50},
+                {agedBrieRoseName, 3, 49, agedBrieRoseName, 2, 50},
+                {agedBrieRoseName, 3, 48, agedBrieRoseName, 2, 49},
+                {agedBrieRoseName, -1, 0, agedBrieRoseName, -2, 2},
+                {agedBrieRoseName, -1, -1, agedBrieRoseName, -2, 1},
+                {agedBrieRoseName, 0, 51, agedBrieRoseName, -1, 51}
+        });
+    }
+
+    private static Collection<Object> prepareElixirOfTheMongooseData() {
+        String elixirOfTheMongooseRoseName = "Elixir of the Mongoose";
+        return Arrays.asList(new Object[][]{
+                {elixirOfTheMongooseRoseName, 5, 9, elixirOfTheMongooseRoseName, 4, 8},
+                {elixirOfTheMongooseRoseName, 1, 1, elixirOfTheMongooseRoseName, 0, 0},
+                {elixirOfTheMongooseRoseName, 1, 0, elixirOfTheMongooseRoseName, 0, 0},
+                {elixirOfTheMongooseRoseName, 0, 0, elixirOfTheMongooseRoseName, -1, 0},
+                {elixirOfTheMongooseRoseName, 0, 2, elixirOfTheMongooseRoseName, -1, 0},
+                {elixirOfTheMongooseRoseName, -1, -1, elixirOfTheMongooseRoseName, -2, -1}
+        });
+    }
+
+    private static Collection<Object> prepareSulfurasHandOfRagnarosData() {
+        String sulfurasHandOfRagnarosRoseName = "Sulfuras, Hand of Ragnaros";
+        return Arrays.asList(new Object[][]{
+                {sulfurasHandOfRagnarosRoseName, 0, 80, sulfurasHandOfRagnarosRoseName, 0, 80},
+                {sulfurasHandOfRagnarosRoseName, -1, 80, sulfurasHandOfRagnarosRoseName, -1, 80},
+                {sulfurasHandOfRagnarosRoseName, 2, 30, sulfurasHandOfRagnarosRoseName, 2, 30},
+                {sulfurasHandOfRagnarosRoseName, 10, 3, sulfurasHandOfRagnarosRoseName, 10, 3},
+                {sulfurasHandOfRagnarosRoseName, -1, -1, sulfurasHandOfRagnarosRoseName, -1, -1}
+        });
+    }
+
+    private static Collection<Object> prepareBackstagePassesToATafkal80etcConcertData() {
+        String backstagePassesToATafkal80etcConcertRoseName = "Backstage passes to a TAFKAL80ETC concert";
+        return Arrays.asList(new Object[][]{
+                {backstagePassesToATafkal80etcConcertRoseName, 15, 20, backstagePassesToATafkal80etcConcertRoseName, 14, 21},
+                {backstagePassesToATafkal80etcConcertRoseName, 15, 49, backstagePassesToATafkal80etcConcertRoseName, 14, 50},
+                {backstagePassesToATafkal80etcConcertRoseName, 15, 50, backstagePassesToATafkal80etcConcertRoseName, 14, 50},
+                {backstagePassesToATafkal80etcConcertRoseName, 6, 20, backstagePassesToATafkal80etcConcertRoseName, 5, 22},
+                {backstagePassesToATafkal80etcConcertRoseName, 6, 49, backstagePassesToATafkal80etcConcertRoseName, 5, 50},
+                {backstagePassesToATafkal80etcConcertRoseName, 6, 50, backstagePassesToATafkal80etcConcertRoseName, 5, 50},
+                {backstagePassesToATafkal80etcConcertRoseName, 5, 20, backstagePassesToATafkal80etcConcertRoseName, 4, 23},
+                {backstagePassesToATafkal80etcConcertRoseName, 5, 49, backstagePassesToATafkal80etcConcertRoseName, 4, 50},
+                {backstagePassesToATafkal80etcConcertRoseName, 5, 50, backstagePassesToATafkal80etcConcertRoseName, 4, 50},
+                {backstagePassesToATafkal80etcConcertRoseName, 1, 20, backstagePassesToATafkal80etcConcertRoseName, 0, 23},
+                {backstagePassesToATafkal80etcConcertRoseName, 0, 20, backstagePassesToATafkal80etcConcertRoseName, -1, 0},
+                {backstagePassesToATafkal80etcConcertRoseName, 0, 50, backstagePassesToATafkal80etcConcertRoseName, -1, 0},
+                {backstagePassesToATafkal80etcConcertRoseName, -1, 0, backstagePassesToATafkal80etcConcertRoseName, -2, 0},
+                {backstagePassesToATafkal80etcConcertRoseName, -1, -1, backstagePassesToATafkal80etcConcertRoseName, -2, 0}
+        });
+    }
+
+    private static Collection<Object> prepareOtherData() {
+        String roseName = "foo";
+        return Arrays.asList(new Object[][]{
+                {roseName, 1, 2, roseName, 0, 1},
+                {roseName, 0, 2, roseName, -1, 0},
+                {roseName, 0, 5, roseName, -1, 3},
+                {roseName, -1, -1, roseName, -2, -1}
+        });
+    }
+
 
     @Test
     public void should_return_right_sell_and_quality_when_update_quality_given_the_rose_item() {
@@ -97,18 +132,20 @@ public class GildedRoseParameterizedTest {
 
         gildedRose.updateQuality();
 
-        String name = gildedRose.roseItems[0].getName();
+        RoseItem roseItem = gildedRose.roseItems[0];
+        System.out.println(roseItem);
+        String name = roseItem.getName();
         String messageFormat = "Test for (" + this.roseName + ", " + this.sellIn + ", " + this.quality + ")" +
                 " of %s, the actual value is %s, but excepted value is %s";
 
         assertThat(String.format(messageFormat, "name", name, exceptedRoseName),
                    name, is(exceptedRoseName));
 
-        int sellIn = gildedRose.roseItems[0].getSellIn();
+        int sellIn = roseItem.getSellIn();
         assertThat(String.format(messageFormat, "sellIn", sellIn, exceptedSellIn),
                    sellIn, is(exceptedSellIn));
 
-        int quality = gildedRose.roseItems[0].getQuality();
+        int quality = roseItem.getQuality();
         assertThat(String.format(messageFormat, "quality", quality, exceptedQuality),
                    quality, is(exceptedQuality));
     }
