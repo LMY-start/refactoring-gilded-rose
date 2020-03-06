@@ -1,105 +1,38 @@
 package com.gildedrose;
 
-
 import lombok.Getter;
 
 @Getter
 public class RoseItem {
 
-    private String name;
-    private int sellIn;
-    private int quality;
+    public String name;
+    public int sellIn;
+    public int quality;
 
-    RoseItem(String name, int sellIn, int quality) {
+    public RoseItem(String name, int sellIn, int quality) {
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
     }
 
-    private void decreaseSellIn() {
-        sellIn -= 1;
+    protected void updateSellIn(){
+        sellIn--;
     }
 
-    private void increaseQuality() {
-        quality += 1;
+    protected void updateQuality(){
+        if (quality > 0)
+            quality--;
+        if (quality > 0 && sellIn < 0)
+            quality--;
     }
 
-    private void decreaseQuality() {
-        quality -= 1;
-    }
-
-    private void resetQuality2Zero() {
-        quality = 0;
+    public void updateSellInAndQuality() {
+        updateSellIn();
+        updateQuality();
     }
 
     @Override
     public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
-    }
-
-    public void updateSellInAndQuality() {
-        processQuality();
-        processSellIn();
-    }
-
-
-    private void processQuality() {
-        if (!name.equals("Aged Brie") && !name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            if (quality > 0) {
-                if (!name.equals("Sulfuras, Hand of Ragnaros")) {
-                    decreaseQuality();
-                }
-            }
-        } else {
-            if (quality < 50) {
-                processWhenQualityLessFifty();
-            }
-        }
-    }
-
-
-    private void processWhenQualityLessFifty() {
-        increaseQuality();
-
-        if (name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            if (sellIn < 11) {
-                if (quality < 50) {
-                    increaseQuality();
-                }
-            }
-
-            if (sellIn < 6) {
-                if (quality < 50) {
-                    increaseQuality();
-                }
-            }
-        }
-    }
-
-    private void processSellIn() {
-        if (!name.equals("Sulfuras, Hand of Ragnaros")) {
-            decreaseSellIn();
-        }
-        if (sellIn < 0) {
-            processWhenSellInLessZero();
-        }
-    }
-
-    private void processWhenSellInLessZero() {
-        if (!name.equals("Aged Brie")) {
-            if (!name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (quality > 0) {
-                    if (!name.equals("Sulfuras, Hand of Ragnaros")) {
-                        decreaseQuality();
-                    }
-                }
-            } else {
-                resetQuality2Zero();
-            }
-        } else {
-            if (quality < 50) {
-                increaseQuality();
-            }
-        }
     }
 }
