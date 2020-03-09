@@ -12,25 +12,18 @@ public class BackstagePass extends Item {
 
     @Override
     protected void updateSellIn() {
-        sellIn = sellIn - 1;
+        sellIn = decreaseSellIn();
     }
 
     @Override
     protected void updateQuality() {
-        if (quality < 50) {
-            quality = quality + 1;
-
-            if (sellIn < 11) {
-                if (quality < 50) {
-                    quality = quality + 1;
-                }
-            }
-
-            if (sellIn < 6) {
-                if (quality < 50) {
-                    quality = quality + 1;
-                }
-            }
+        increaseQualityIfLessFifty();
+        if (sellIn < 11) {
+            increaseQualityIfLessFifty();
+        }
+        if (sellIn < 6) {
+            increaseQualityIfLessFifty();
         }
     }
+
 }
