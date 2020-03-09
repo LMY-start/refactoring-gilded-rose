@@ -2,11 +2,11 @@ package com.gildedrose;
 
 public class Item {
 
-    private String name;
+    protected String name;
 
-    private int sellIn;
+    protected int sellIn;
 
-    private int quality;
+    protected int quality;
 
     public Item(String name, int sellIn, int quality) {
         this.name = name;
@@ -19,75 +19,24 @@ public class Item {
         return this.name + ", " + this.sellIn + ", " + this.quality;
     }
 
-    void update()   {
-        if (isAgedBrie()) {
-            if (quality < 50) {
-                quality = quality + 1;
+    void update() {
+        updateQuality();
 
-                if (isBackstagePass()) {
-                    if (sellIn < 11) {
-                        if (quality < 50) {
-                            quality = quality + 1;
-                        }
-                    }
-
-                    if (sellIn < 6) {
-                        if (quality < 50) {
-                            quality = quality + 1;
-                        }
-                    }
-                }
-            }
-        } else if (isBackstagePass()) {
-            if (quality < 50) {
-                quality = quality + 1;
-
-                if (isBackstagePass()) {
-                    if (sellIn < 11) {
-                        if (quality < 50) {
-                            quality = quality + 1;
-                        }
-                    }
-
-                    if (sellIn < 6) {
-                        if (quality < 50) {
-                            quality = quality + 1;
-                        }
-                    }
-                }
-            }
-        } else {
-            if (quality > 0) {
-                if (isSulfuras()) {
-                } else {
-                    quality = quality - 1;
-                }
-            }
-        }
-
-        if (isSulfuras()) {
-        } else {
-            sellIn = sellIn - 1;
-        }
+        updateSellIn();
 
         if (sellIn < 0) {
-            if (isAgedBrie()) {
-                if (quality < 50) {
-                    quality = quality + 1;
-                }
-            } else {
-                if (isBackstagePass()) {
-                    quality = 0;
-                } else {
-                    if (quality > 0) {
-                        if (isSulfuras()) {
-                            return;
-                        }
-                        quality = quality - 1;
-                    }
-                }
-            }
+            updateQualityIFExpired();
         }
+    }
+
+    protected void updateQualityIFExpired() {
+    }
+
+    protected void updateSellIn() {
+    }
+
+    protected void updateQuality() {
+
     }
 
     private boolean isSulfuras() {

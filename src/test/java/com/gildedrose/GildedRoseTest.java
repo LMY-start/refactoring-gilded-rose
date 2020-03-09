@@ -44,7 +44,16 @@ public class GildedRoseTest {
 
 
     private Item createItem(String name, int sellIn, int quality) {
-        return new Item(name, sellIn, quality);
+        if (name.equals("Aged Brie")) {
+            return new AgedBrie(sellIn, quality);
+        }
+        if (name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+            return new  BackstagePass(sellIn, quality);
+        }
+        if (name.equals("Sulfuras, Hand of Ragnaros")){
+            return  new Sulfuras(sellIn,quality);
+        }
+        return new RegularItem(name, sellIn, quality);
     }
 
 
