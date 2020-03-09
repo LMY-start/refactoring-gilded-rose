@@ -20,14 +20,7 @@ public class Item {
     }
 
     void update()   {
-        if (!isAgedBrie()
-                && !isBackstagePass()) {
-            if (quality > 0) {
-                if (!isSulfuras()) {
-                    quality = quality - 1;
-                }
-            }
-        } else {
+        if (isAgedBrie()) {
             if (quality < 50) {
                 quality = quality + 1;
 
@@ -45,26 +38,53 @@ public class Item {
                     }
                 }
             }
+        } else if (isBackstagePass()) {
+            if (quality < 50) {
+                quality = quality + 1;
+
+                if (isBackstagePass()) {
+                    if (sellIn < 11) {
+                        if (quality < 50) {
+                            quality = quality + 1;
+                        }
+                    }
+
+                    if (sellIn < 6) {
+                        if (quality < 50) {
+                            quality = quality + 1;
+                        }
+                    }
+                }
+            }
+        } else {
+            if (quality > 0) {
+                if (isSulfuras()) {
+                } else {
+                    quality = quality - 1;
+                }
+            }
         }
 
-        if (!isSulfuras()) {
+        if (isSulfuras()) {
+        } else {
             sellIn = sellIn - 1;
         }
 
         if (sellIn < 0) {
-            if (!isAgedBrie()) {
-                if (!isBackstagePass()) {
-                    if (quality > 0) {
-                        if (!isSulfuras()) {
-                            quality = quality - 1;
-                        }
-                    }
-                } else {
-                    quality = 0;
-                }
-            } else {
+            if (isAgedBrie()) {
                 if (quality < 50) {
                     quality = quality + 1;
+                }
+            } else {
+                if (isBackstagePass()) {
+                    quality = 0;
+                } else {
+                    if (quality > 0) {
+                        if (isSulfuras()) {
+                            return;
+                        }
+                        quality = quality - 1;
+                    }
                 }
             }
         }
